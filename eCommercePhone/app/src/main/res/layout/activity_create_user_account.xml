@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".Login_CreateAccount_2Factor.Create_User_Account"
+    android:background="@drawable/login_background"> <!-- Gradient background for a modern look -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:statusBarColor="@android:color/transparent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/baseline_account_circle_24"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_corners"
+            android:elevation="4dp"/>
+
+        <!-- First Name Input -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Firstname..."
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_corners"
+            android:padding="18dp"
+            android:inputType="textPersonName"
+            android:id="@+id/firstname_input"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Lastname..."
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_corners"
+            android:padding="18dp"
+            android:inputType="textPersonName"
+            android:id="@+id/lastname_input"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Email"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_corners"
+            android:padding="18dp"
+            android:inputType="textEmailAddress"
+            android:id="@+id/email_input"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Password"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="18sp"
+            android:background="@drawable/rounded_corners"
+            android:padding="18dp"
+            android:inputType="textPassword"
+            android:id="@+id/password_input"/>
+
+        <Button
+            android:id="@+id/Create_Account_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="#2A9ACD"
+            android:padding="14dp"
+            android:text="Create Account"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@drawable/rounded_corners" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,16 @@
+<div class="popup-overlay">
+  <div class="popup-window">
+    <h2 style="margin-top: 0;">Ecommerce Authenticator</h2>
+    <h1 style="margin-top: 0;">Request sent to phone!</h1>
+    <div class="toast" *ngIf="showToast">
+      Authentication successfully!
+    </div>
+    <div *ngIf="errorMessage" class="error">
+      Authentication failed!
+    </div>
+    <div *ngIf="errorTimedOut" class="error">
+      Authentication Timed Out!
+    </div>
+    <button class="close-btn" (click)="close()">Close</button>
+  </div>
+</div>

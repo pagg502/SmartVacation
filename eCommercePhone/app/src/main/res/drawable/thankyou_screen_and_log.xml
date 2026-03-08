@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".MainActivity"
+    android:background="@drawable/login_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:statusBarColor="@android:color/transparent">
+
+        
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thank you for feeding Sami."
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Please enter the code sent to your phone:"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Review log:"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Log"
+            android:backgroundTint="@color/white"
+            android:textColor="#3B84F1"
+            android:padding="18dp"
+            android:layout_margin="5dp"
+            android:textSize="20sp"
+            android:id="@+id/login_button"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

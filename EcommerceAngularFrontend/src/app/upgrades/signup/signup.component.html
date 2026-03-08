@@ -1,0 +1,114 @@
+<div class="popup-overlay">
+  <div class="popup-window">
+
+    <h2 *ngIf="!isAuthenticated" style="margin-top: 0;">{{signup}}</h2>
+    <h2 *ngIf="isAuthenticated" style="margin-top: 0;">{{addCustomer}}</h2>
+    <div class="toast" *ngIf="showToast">
+        Account created successfully!
+    </div>
+    <div class="displayMessage">
+      {{displayMessage}}
+    </div>
+    <form class="form" #form="ngForm" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+
+      <div class="required">
+        <input id="firstName" name="firstName" type="text" [(ngModel)]="firstName" #firstnameRef="ngModel" placeholder="First Name" required>
+        <div *ngIf="firstnameRef.invalid && firstnameRef.touched" style="color: red;">
+          First name is required.
+        </div>
+      </div>
+
+      <div>
+        <input id="lastName" name="lastName" type="text" [(ngModel)]="lastName" #lastNameRef="ngModel" placeholder="Last Name" required>
+        <div *ngIf="lastNameRef.invalid && lastNameRef.touched" style="color: red;">
+          Last name is required.
+        </div>
+      </div>
+
+      <div>
+        <input id="address" name="address" type="text" [(ngModel)]="address" #addressRef="ngModel" placeholder="Address" >
+      </div>
+
+      <div>
+        <input id="postal_code" name="postal_code" type="number" [(ngModel)]="postal_code" #postal_codeRef="ngModel" placeholder="Postal Code">
+      </div>
+
+      <div>
+        <input id="phone" name="phone" type="tel" [(ngModel)]="phone" #firstnameRef="ngModel" placeholder="Phone Number">
+      </div>
+
+      <div>
+        <input id="email" name="email" type="email" [(ngModel)]="email" #emailRef="ngModel" placeholder="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+        <div *ngIf="emailRef.invalid && emailRef.touched" style="color:red;">
+        <div *ngIf="emailRef.errors?.['required']">Email is required.</div>
+          <div *ngIf="emailRef.errors?.['email']">Enter a valid email address.</div>
+          <div *ngIf="emailRef.errors?.['pattern']">Email format is invalid.</div>
+        </div>
+      </div>
+
+      <div>
+        <input id="password" name="password" type="password" [(ngModel)]="password"  #passwordRef="ngModel" placeholder="Password" required>
+      </div>
+
+      <div>
+        <input id="pwdConf" name="pwdConf" type="password" [(ngModel)]="pwdConf"  #pwdConfRef="ngModel" placeholder="Confirm PW" required>
+        <div *ngIf="pwdConfRef.touched && password !== pwdConf" style="color:red;">
+          Passwords do not match.
+        </div>
+      </div>
+      <div>
+        <label>
+          Country
+        </label>
+        <select
+          [(ngModel)]="countryChoice"
+          id="country"
+          name="country"
+          #countryRef="ngModel"
+          required
+        >
+          <option value="" disabled selected hidden></option>
+          <option *ngFor="let country of countries" [value]="country.id">
+            {{ country.country_name }}
+          </option>
+        </select>
+
+        <div *ngIf="countryRef.invalid && countryRef.touched" style="color:red;">
+          Country is required.
+        </div>
+      </div>
+
+      <div>
+        <label>
+          Division
+        </label>
+        <select
+          [(ngModel)]="divisionChoice"
+          id="division"
+          name="division"
+          #divisionRef="ngModel"
+          required
+        >
+          <option value="" disabled selected hidden>Select a division</option>
+          <option *ngFor="let division of getDivisionsByCountryId(countryChoice)" [value]="division.id">
+            {{ division.division_name }}
+          </option>
+        </select>
+
+        <div *ngIf="divisionRef.invalid && divisionRef.touched" style="color:red;">
+          Division is required.
+        </div>
+      </div>
+
+      <button class="close-btn" type="submit" [disabled]="form.invalid || isSubmitting">Add Customer</button>
+
+    </div>
+    </form>
+
+    <button class="close-btn" (click)="close()">Close</button>
+    <button *ngIf="!isAuthenticated" (click)="openLogin()">Already have an account?</button>
+
+
+  </div>
+</div>

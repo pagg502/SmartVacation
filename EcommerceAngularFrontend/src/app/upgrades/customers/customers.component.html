@@ -1,0 +1,23 @@
+<div class="popup-overlay-customer">
+  <div class="popup-window-customer">
+    <h2 style="margin-top: 0;">Manage Users</h2>
+    <div id="scrollable">
+      <ul>
+        <li *ngFor="let customer of customers" class="list-item">
+          <p>{{customer.firstName}} {{customer.lastName}}</p>
+          <button (click)="openEditCustomerM(customer.id)" mat-button class="edit-customer">
+            <a><mat-icon class="icon-display">visibility</mat-icon></a>
+          </button>
+          <button (click)="deleteCustomerM(customer.id)" mat-button class="delete-customer">
+            <a><mat-icon class="icon-display">delete</mat-icon></a>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div class="gap">
+      <button class="close-btn" (click)="closeCustomerM()">Close</button>
+      <button class="add-btn" (click)="addCustomerM()">Add Customer</button>
+      <button class="add-btn" (click)="refreshCustomersM()">Refresh</button>
+    </div>
+  </div>
+</div>

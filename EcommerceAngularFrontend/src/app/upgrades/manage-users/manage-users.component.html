@@ -1,0 +1,23 @@
+<div class="popup-overlay">
+  <div class="popup-window">
+
+    <h2 style="margin-top: 0;">Welcome Admin!</h2>
+    <h2 style="margin-top: 0;">Manage Customers.</h2>
+
+    <div class="toast" *ngIf="showToast">
+      Account created successfully! Redirecting...
+    </div>
+    <div class="displayMessage">
+      {{displayMessage}}
+    </div>
+    <div class="mainButtons">
+
+      <button class="Manage-btn" (click)="openCustomersM()">Manage</button>
+      <button class="Search" (click)="openSearchM()">Search</button>
+    </div>
+
+    <button class="close-btn" (click)="close()">Close</button>
+
+
+  </div>
+</div>

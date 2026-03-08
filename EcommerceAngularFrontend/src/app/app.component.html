@@ -1,0 +1,106 @@
+<div>
+<mat-toolbar color="primary" class="top-nav">
+  <button class="manageButton" *ngIf="isAuthenticated" mat-button (click)="manageUsers()">Manage</button>
+  <span class="spacer"></span>
+  <span *ngIf="isAuthenticated">
+    Welcome, {{ authService.firstName }}!
+  </span>
+  <button class="logoutButton" *ngIf="isAuthenticated" mat-button (click)="openLogout()">Logout</button>
+  <button class="loginButton" *ngIf="!isAuthenticated" mat-button (click)="openLogin()">Login</button>
+  <button class="signupButton" *ngIf="!isAuthenticated" mat-button (click)="openSignup()">Signup</button>
+
+  <app-manage-users
+    *ngIf="showManageUsers"
+    (openSearch)="openSearch()"
+    (openCustomers)="openCustomers()"
+    (closeEvent)="closeManageUsers()">
+  </app-manage-users>
+
+  <app-customers
+    *ngIf="showCustomers"
+    (closeCustomer)="closeCustomers()"
+    (addCustomer)="openSignup()"
+    (refreshCustomers)="refreshCustomers()"
+    (openEditCustomer)="openEditCustomerM($event)">
+  </app-customers>
+
+  <app-edit-customer
+    *ngIf="showEditCustomer"
+    (closeEvent)="closeEditCustomer()"
+    [customerId]="selectedCustomerId">>
+  </app-edit-customer>
+
+  <app-search
+    *ngIf="showSearch"
+    (closeEvent)="closeSearch()">
+  </app-search>
+
+  <app-login
+    *ngIf="showLogin"
+    (closeEvent)="closeLogin()"
+    (twoFaEvent)="switchTo2Fa()"
+    (signupEvent)="switchToSignup()"
+    (twoFaNotSetDApp)="switchToShow2FaNotSetDApp()">
+  </app-login>
+
+  <app-signup
+    *ngIf="showSignup"
+    (closeEvent)="closeSignup()"
+    (loginEvent)="switchToLogin()">
+  </app-signup>
+
+  <app-logout
+    *ngIf="showLogout"
+    (closeEvent)="closeLogout()">
+  </app-logout>
+
+  <app-two-factor-authentication
+    *ngIf="show2Fa"
+    (closeEvent)="close2Fa()">
+  </app-two-factor-authentication>
+
+  <app-two-fa-not-set-download-app
+    *ngIf="show2FaNotSetDApp"
+    (closeEvent)="closeShow2FaNotSetDApp()">
+  </app-two-fa-not-set-download-app>
+
+ </mat-toolbar>
+
+ <div class="main-content">
+   <div class="main-content-2">
+     <div class="spaced-items">
+     <h1>Vacation Time</h1>
+     <div class="main-content-div">
+       <div class="mat-datepicker-toggle-active">
+         <mat-form-field appearance="fill">
+           <mat-label>Hot destinations</mat-label>
+           <mat-select [(value)]="selectedDestination">
+             <mat-option *ngFor="let destination of destinations" [value]="destination">
+               {{ destination }}
+             </mat-option>
+           </mat-select>
+         </mat-form-field>
+       </div>
+         <div class="mat-datepicker-toggle-active">
+           <mat-form-field appearance="fill">
+             <mat-label>Choose a date range</mat-label>
+             <mat-date-range-input [rangePicker]="picker">
+               <input matStartDate placeholder="Start date">
+               <input matEndDate placeholder="End date">
+             </mat-date-range-input>
+             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+             <mat-date-range-picker #picker></mat-date-range-picker>
+           </mat-form-field>
+         </div>
+         <button mat-raised-button id="findMeBut" color="primary" (click)="scrollToSection()">Find me</button>
+     </div>
+     </div>
+     <mat-toolbar color="primary" class="mat-stepper-horizontal-line">
+       <span>Catch a deal before they are gone!</span>
+     </mat-toolbar>
+   </div>
+ </div>
+  <div class="content mat-elevation-z8" id="target-section">
+    <router-outlet (activate)="onRouteActivate($event)"></router-outlet>
+  </div>
+</div>

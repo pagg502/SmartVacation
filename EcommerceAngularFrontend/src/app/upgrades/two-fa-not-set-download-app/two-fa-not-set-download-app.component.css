@@ -1,0 +1,97 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.popup-window {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+
+  /* --- THE AUTO-SIZING --- */
+  width: 90%;
+  max-width: 380px;
+  height: auto;           /* Grows and shrinks with content */
+  min-height: 200px;      /* Prevents it from looking too squashed when empty */
+  max-height: 90vh;       /* Never gets taller than 90% of the screen height */
+  overflow-y: auto;       /* Adds a scrollbar ONLY if content hits the 90vh limit */
+  /* ----------------------------- */
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    0 3px 6px rgba(0, 0, 0, 0.12);
+
+  animation: popupFadeIn 0.25s ease-out;
+
+  /* Flexbox settings */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centers items vertically when there is extra space */
+  gap: 16px;               /* Slightly more gap for better readability */
+  text-align: center;
+
+  /* Smooth transition for when the height changes */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Subtle fade-in animation */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Style your inputs and buttons: nice and clean */
+.popup-window input {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.popup-window button {
+  padding: 10px 16px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 50%;
+  transition: background 0.2s;
+}
+
+.popup-window button:hover {
+  background: #0056c7;
+}
+
+/* Close button (optional) */
+.close-btn {
+  background: #999;
+  margin-top: 8px;
+}
+
+.close-btn:hover {
+  background: #777;
+}
+
+a:hover {
+  color: #007bff;
+}
+.toast {
+  color: #01cf54;
+}

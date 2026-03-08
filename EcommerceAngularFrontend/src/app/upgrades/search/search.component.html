@@ -1,0 +1,145 @@
+<div class="popup-overlay">
+  <div class="popup-window">
+
+    <h2 style="margin-top: 0;">Search by criteria and see the final report</h2>
+    <div class="toast" *ngIf="showToast">
+      Account created successfully! Redirecting...
+    </div>
+    <div class="displayMessage">
+      {{displayMessage}}
+    </div>
+    <div class="displayRow">
+      <div class="required">
+        <input id="firstName" name="firstName" type="text" [(ngModel)]="firstName" #firstnameRef="ngModel" placeholder="Example: John" required>
+        <button class="Report" (click)="firstNameReport()">Find Matching FirstName</button>
+      </div>
+      <div class="required">
+        <input id="phone" name="phone" type="tel" [(ngModel)]="phoneAreaCode" #phoneRef="ngModel" placeholder="Example: 801" required>
+        <button class="Report" (click)="areaCodeReport()">Find Matching Area Codes</button>
+      </div>
+
+
+    </div>
+
+    <div class="displayTheReport">
+
+      <div *ngIf="fNReport">
+
+        <!-- Report Details -->
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Report Name</th>
+            <td>{{ fNReport.reportName }}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{{ fNReport.date | date:'short' }}</td>
+          </tr>
+          <tr>
+            <th>First Name Searched</th>
+            <td>{{ fNReport.firstName }}</td>
+          </tr>
+          <tr>
+            <th>Total Matches</th>
+            <td>{{ fNReport.sameNameCount }}</td>
+          </tr>
+          <tr>
+            <th>Summary</th>
+            <td>{{ fNReport.summary }}</td>
+          </tr>
+        </table>
+
+        <!-- Customer Results -->
+        <h3>Matching Customers</h3>
+
+        <table class="table table-hover" *ngIf="fNReport?.customers?.length > 0; else noResults">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of fNReport?.customers">
+            <td>{{ c.id }}</td>
+            <td>{{ c.firstName }}</td>
+            <td>{{ c.lastName }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.phone }}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noResults>
+          <p>No customers found for this search.</p>
+        </ng-template>
+
+      </div>
+
+
+      <div *ngIf="aCReport">
+
+        <!-- Report Details -->
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th>Report Name</th>
+            <td>{{ aCReport.reportName }}</td>
+          </tr>
+          <tr>
+            <th>Date</th>
+            <td>{{ aCReport.date | date:'short' }}</td>
+          </tr>
+          <tr>
+            <th>Phone Area Code Searched</th>
+            <td>{{ aCReport.phoneAreaCode }}</td>
+          </tr>
+          <tr>
+            <th>Total Matches</th>
+            <td>{{ aCReport.samePhoneAreaCodeCount }}</td>
+          </tr>
+          <tr>
+            <th>Summary</th>
+            <td>{{ aCReport.summary }}</td>
+          </tr>
+        </table>
+
+        <!-- Customer Results -->
+        <h3>Matching Customers</h3>
+
+        <table class="table table-hover" *ngIf="aCReport?.customers?.length > 0; else noACResults">
+          <thead>
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of aCReport.customers">
+            <td>{{ c.id }}</td>
+            <td>{{ c.firstName }}</td>
+            <td>{{ c.lastName }}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.phone }}</td>
+          </tr>
+          </tbody>
+        </table>
+
+        <ng-template #noACResults>
+          <p>No customers found for this area code.</p>
+        </ng-template>
+
+      </div>
+
+    </div>
+
+    <button class="close-btn" (click)="close()">Close</button>
+
+
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="popup-overlay">
+  <div class="popup-window">
+
+    <h2 style="margin-top: 0;">Login</h2>
+    <div class="toast" *ngIf="showToast">
+      Login successfully! Redirecting...
+    </div>
+    <div *ngIf="showProcessing" class="showProcessing">
+      Processing...
+    </div>
+
+    <input id="email" name="email" type="email" [(ngModel)]="email" #emailRef="ngModel" placeholder="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
+    <div *ngIf="emailRef.invalid && emailRef.touched" style="color:red;">
+      <div *ngIf="emailRef.errors?.['required']">Email is required.</div>
+      <div *ngIf="emailRef.errors?.['email']">Enter a valid email address.</div>
+      <div *ngIf="emailRef.errors?.['pattern']">Email format is invalid.</div>
+    </div>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required>
+
+    <button *ngIf="!isSubmitting" (click)="onSubmit()">Login</button>
+    <button class="close-btn" (click)="close()">Close</button>
+    <button (click)="openSignup()">Create new account</button>
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+
+
+    <a href="#" (click)="featureNotReady($event)">Forgot password?</a>
+
+
+
+  </div>
+</div>

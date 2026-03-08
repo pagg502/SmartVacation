@@ -1,0 +1,130 @@
+mat-sidenav {
+  margin: 16px;
+  width: 100px;
+  border-right: none;
+  background: white;
+  color: black;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.content {
+  height: fit-content;
+  border-radius: 10px;
+  margin: 16px;
+  margin-left: 32px;
+
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+
+  font-size: 1.3rem;
+}
+
+mat-sidenav-container {
+  height: calc(100vh);
+}
+
+.icon-display {
+  transform: scale(2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.main-content {
+  background-image: url('/assets/main_background_img.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 600px;
+
+}
+.main-content-2{
+  background-color: rgba(5, 5, 5, 0.5);
+  height: 600px;
+
+}
+
+.spaced-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.spaced-items > h1 {
+  font-size: 5rem;
+  text-align: center;
+  color: white;
+  margin-top: 285px;
+
+}
+
+.main-content-div {
+  background-color: rgba(255, 255, 255, .95);
+  height: 130px;
+  width: 900px;
+  padding: 20px;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+
+
+mat-form-field {
+  display: block;
+  width: 250px;
+  margin-bottom: 15px;
+}
+
+.top-nav {
+  background-color: white !important;
+  color: black !important;
+}
+
+.top-nav > button:hover {
+  background-color: white;
+  color: #0066bb;
+}
+
+.mat-stepper-horizontal-line {
+
+  color: white;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.logoutButton, .manageButton, .loginButton, .signupButton {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1rem;
+}
+
+#findMeBut {
+  height: 50px !important;
+  margin-top: -30px !important;
+}
+
+
+

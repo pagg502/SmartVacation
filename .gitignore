@@ -1,0 +1,20 @@
+# IntelliJ IDEA files
+.idea/
+
+# Backend: Maven / Java
+**/target/
+*.jar
+
+# Frontend: Node / Angular
+**/node_modules/
+**/dist/
+
+# Android / Gradle
+**/build/
+**/.gradle/
+**/captures/
+**/.externalNativeBuild/
+**/.cxx/
+**/local.properties
+# Firebase config
+**/google-services.json

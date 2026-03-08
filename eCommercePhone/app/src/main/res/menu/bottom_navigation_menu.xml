@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/nav_medication"
+        android:icon="@drawable/baseline_medical_services_24"
+        android:textColor="#E30A0A"
+        android:title="Medication" />
+
+    <item
+        android:id="@+id/nav_grocery"
+        android:icon="@drawable/baseline_local_grocery_store_24"
+        android:title="Grocery" />
+
+    <item
+        android:id="@+id/nav_pet"
+        android:icon="@drawable/baseline_pets_24"
+        android:title="Pet" />
+
+
+
+</menu>
