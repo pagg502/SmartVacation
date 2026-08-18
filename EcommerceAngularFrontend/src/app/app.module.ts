@@ -41,6 +41,7 @@ import { CustomersComponent } from './upgrades/customers/customers.component';
 import { SearchComponent } from './upgrades/search/search.component';
 import { TwoFactorAuthenticationComponent } from './upgrades/two-factor-authentication/two-factor-authentication.component';
 import { TwoFaNotSetDownloadAppComponent } from './upgrades/two-fa-not-set-download-app/two-fa-not-set-download-app.component';
+import { StartAiChatComponent } from './upgrades/start-ai-chat/start-ai-chat.component';
 
 
 
@@ -65,6 +66,7 @@ import { TwoFaNotSetDownloadAppComponent } from './upgrades/two-fa-not-set-downl
     SearchComponent,
     TwoFactorAuthenticationComponent,
     TwoFaNotSetDownloadAppComponent,
+    StartAiChatComponent,
   ],
   imports: [
     BrowserModule,

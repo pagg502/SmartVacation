@@ -54,6 +54,8 @@ export class AppComponent {
   showEditCustomer = false;
   show2Fa = false;
   show2FaNotSetDApp = false;
+  showAiChat = false;
+  showAskMeButton = true;
 
   //Switches
   switchToSignup() {
@@ -78,6 +80,12 @@ export class AppComponent {
   }
 
   //Close windows
+  closeAiChat() {
+    this.showAiChat = false;
+    this.showAskMeButton = true;
+    //##################################################### Call webscoket and terminate connection
+  }
+
   closeLogin() {
     this.showLogin = false;
     if (!this.isAuthenticated) {
@@ -124,6 +132,11 @@ export class AppComponent {
     this.showLogin = false;
     this.show2Fa = true;
   }
+
+  openAiChat() {
+    this.showAiChat = true;
+    this.showAskMeButton = false;
+   }
 
   openSignup() {
     this.showLogin = false;
@@ -260,6 +273,11 @@ export class AppComponent {
 
 
   ngOnInit(): void {
+    //Open AI Chat window
+    setTimeout(() => {
+              this.showAiChat = true;
+              this.showAskMeButton = false;
+            }, 2000);
 
     //Subscribe to Observable to change user layout
       this.authService.isLoggedIn$.subscribe(isLoggedIn => {

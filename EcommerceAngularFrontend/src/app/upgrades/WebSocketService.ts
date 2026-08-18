@@ -40,6 +40,38 @@ export class WebSocketService {
     });
   }
 
+  // 1. Add sessionId as a parameter
+  connectAiChat(sessionId: string, onMessageReceived: (payload: any) => void) {
+    if (this.client && this.client.connected) {
+      this.subscribeToAi(sessionId, onMessageReceived);
+      return;
+    }
+
+    this.client = new Client({
+      webSocketFactory: () => new SockJS(environment.apiUrl + '/websocket'),
+      reconnectDelay: 5000,
+    });
+
+    this.client.onConnect = () => {
+      console.log('Connected to AI Chat WebSocket');
+      // 2. Pass the sessionId down to the subscription logic
+      this.subscribeToAi(sessionId, onMessageReceived);
+    };
+
+    this.client.activate();
+  }
+
+  // 3. Dynamic subscription path
+  private subscribeToAi(sessionId: string, callback: (payload: any) => void) {
+    const topic = `/messages/aiChat/${sessionId}`;
+
+    this.client.subscribe(topic, (message: IMessage) => {
+      callback(JSON.parse(message.body));
+    });
+
+    console.log(`Subscribed to: ${topic}`);
+  }
+
   disconnect() {
     if (this.client && this.client.active) {
       this.client.deactivate();
