@@ -7,4 +7,7 @@ and composes a personalized travel plan — all within a single conversational f
 This upgrade demonstrates how legacy ecommerce infrastructure can evolve into an autonomous, intent-driven <br>
 booking experience without rebuilding the entire system.
 
+# Requirements:
+- Create environment variables with a valid NOVA_API_KEY. (NovaApiService.java/.apiKey(System.getenv("NOVA_API_KEY")))
+
 

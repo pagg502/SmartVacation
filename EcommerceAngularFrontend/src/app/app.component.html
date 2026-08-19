@@ -1,6 +1,7 @@
 <div>
 <mat-toolbar color="primary" class="top-nav">
   <button class="manageButton" *ngIf="isAuthenticated" mat-button (click)="manageUsers()">Manage</button>
+  <button class="aiButton" *ngIf="showAskMeButton" mat-button (click)="openAiChat()">ASK ME!</button>
   <span class="spacer"></span>
   <span *ngIf="isAuthenticated">
     Welcome, {{ authService.firstName }}!
@@ -63,6 +64,11 @@
     *ngIf="show2FaNotSetDApp"
     (closeEvent)="closeShow2FaNotSetDApp()">
   </app-two-fa-not-set-download-app>
+
+  <app-start-ai-chat
+    *ngIf="showAiChat"
+    (closeEvent)="closeAiChat()">
+  </app-start-ai-chat>
 
  </mat-toolbar>
 

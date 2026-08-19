@@ -21,7 +21,7 @@ export class TwoFactorAuthenticationComponent implements OnInit {
 
   showToast = false;
   errorMessage = false;
-  errorTimedOut = false
+  errorTimedOut = false;
   //Create variable to hold the timer reference
   private timeoutId: any;
 
@@ -61,7 +61,7 @@ export class TwoFactorAuthenticationComponent implements OnInit {
       this.errorTimedOut = true
     }, 15000);
 
-    // Connect WebSocket using the real email
+    //Connect WebSocket using the email
     this.webSocket.connect(
       this.customerDto.getEmail(),
       payload => this.handle2FAUpdate(payload)
