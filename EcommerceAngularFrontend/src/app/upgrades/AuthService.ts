@@ -26,7 +26,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   checkSession() {
-    return this.http.get<any>(environment.apiUrl + '/status', {
+    return this.http.get<CustomerDto>(environment.apiUrl + '/status', {
       withCredentials: true, observe: 'response'
     });
   }

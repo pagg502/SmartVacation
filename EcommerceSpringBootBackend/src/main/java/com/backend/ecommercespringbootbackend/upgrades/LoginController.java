@@ -63,10 +63,7 @@ public class LoginController {
         String firstName = (String) session.getAttribute("firstName");
 
         if (email == null) {
-            return ResponseEntity.status(401).body("Not logged in");
-        }
-        if (firstName == null) {
-            return ResponseEntity.status(401).body("Not user found for email: " + email);
+            return ResponseEntity.status(401).body("Customer not logged in!");
         }
         return ResponseEntity.ok(Map.of("email", email,  "firstName", firstName));
     }

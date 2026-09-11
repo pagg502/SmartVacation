@@ -11,11 +11,9 @@ import {StatusType} from "./model/StatusType";
 import {CartItemDto} from "./model/dto/cart-item-dto";
 import {VacationDto} from "./model/dto/vacation-dto";
 import * as http from "node:http";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {MatDateRangeInput} from "@angular/material/datepicker";
 import {timeout} from "rxjs";
-
-
 
 @Component({
   selector: 'app-root',
@@ -201,7 +199,6 @@ export class AppComponent {
     this.closeCustomers();
     setTimeout(() => {
       this.openCustomers();
-
     } , 10);
   }
 
@@ -212,19 +209,25 @@ export class AppComponent {
     }
   }
 
-
   //Check user session
   checkUserSession(){
-
     this.authService.checkSession().subscribe({
-      next: (response: any) => {
+      next: (response: HttpResponse<CustomerDto>) => {
+        //If response.body exist, and contains .email proceed
+        if (response.body?.getEmail()) {
+          //Create customerDTO instance and parse JSON values to it
+          const customer = Object.assign(
+            new CustomerDto(0, "", "", "", "", "", "", ""),
+            response.body
+          );
 
-        //Create customerDTO instance and parse JSON values to it
-        const customer = Object.assign(
-          new CustomerDto(0, "", "", "", "", "", "", ""),
-          response.body
-        );
-        if (customer) {
+          console.log("User is logged in:", customer.getFirstName);
+          this.authService.setLoggedIn(true);
+          //Set user firstname
+          this.authService.firstName = customer?.getFirstName();
+          //Close login popup-window
+          this.showLogin = false;
+
           //Set customer
           this.purchaseServiceDto.setCustomer(customer);
           console.log('Successfully customer returned...');
@@ -239,38 +242,24 @@ export class AppComponent {
         }else {
           console.log('Error: No customer returned or saved...');
         }
-
-        console.log("User is logged in:", customer.firstName);
-        this.authService.setLoggedIn(true);
-        //Set user firstname
-        this.authService.firstName = customer?.getFirstName();
-        //Call method to render authenticated user data
-        //this.authService.setLoggedIn(true);
-        //Close login popup-window
-        this.showLogin = false;
-
       },
-      error: (email: string) => {
-        console.log("No active session. Email: ", email);
+      error: (response: HttpErrorResponse) => {
+        console.log("Status Error: ", response.error);
         this.authService.setLoggedIn(false);
       }
     });
-
   }
-
 
   //When refreshing the app, trigger check session and store customer and values to use them later during Checkout
   customerDto: CustomerDto = new CustomerDto(0, "", "", "", "", "", "", "");
   cartDto: CartDto = new CartDto(0, 0, 0, StatusType.pending, this.customerDto);
   cartItems: CartItemDto[] = [];
 
-
   purchaseServiceDto: PurchaseDto = new PurchaseDto(
     this.customerDto,
     this.cartDto,
     this.cartItems
   );
-
 
   ngOnInit(): void {
     //Open AI Chat window
@@ -291,17 +280,13 @@ export class AppComponent {
       }
     });
 
-
     const customer = this.authService.currentCustomer;
     this.firstName = customer?.firstName ?? '';
-
     this.checkUserSession()
-
   }
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
-
       if (this.sidenav) {
         // responsive sidenav logic
         if (res.matches) {
@@ -312,10 +297,9 @@ export class AppComponent {
           this.sidenav.open();
         }
       }
-
-
     });
   }
+
   //Scroll down to destinations
   scrollToSection() {
     const element = document.getElementById('target-section');
@@ -327,9 +311,6 @@ export class AppComponent {
 
   //ManageUsers window
   protected manageUsers() {
-
     this.openManageUsers()
-
   }
-
 }
